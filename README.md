@@ -5,7 +5,9 @@
 [![GitHub Star](https://img.shields.io/github/stars/Ratnesh-181998/Agentic-RAG-Anime-Recommender-System?style=social)](https://github.com/Ratnesh-181998/Agentic-RAG-Anime-Recommender-System)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/ratneshkumar1998/)
 
-![Banner](assets/banner.png)
+
+<img width="740" height="353" alt="image" src="https://github.com/user-attachments/assets/9212a264-2262-472a-a4c2-e5206f612f64" />
+
 
 > **A production-grade, Agentic Retrieval-Augmented Generation (RAG) system for semantic anime discovery. Powered by Groq, LangChain, and ChromaDB.**
 
