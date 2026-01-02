@@ -1,0 +1,13 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+logs/
+*.log
+ANIME_RECOMMENDER.egg-info/
+.DS_Store
+.ipynb_checkpoints/
+.vscode/
+.idea/
+*.sqlite3-journal
