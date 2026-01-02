@@ -7,11 +7,11 @@ from utils.custom_exception import CustomException
 logger = get_logger(__name__)
 
 class AnimeRecommendationPipeline:
-    def __init__(self,persist_dir="chroma_db"):
+    def __init__(self,persist_dir="chroma_db", embedding=None):
         try:
             logger.info("Initializing Recommendation Pipeline")
 
-            vector_builder = VectorStoreBuilder(csv_path="" , persist_dir=persist_dir)
+            vector_builder = VectorStoreBuilder(csv_path="" , persist_dir=persist_dir, embedding=embedding)
 
             retriever = vector_builder.load_vector_store().as_retriever()
 

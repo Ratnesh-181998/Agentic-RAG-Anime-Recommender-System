@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from pipeline.pipeline import AnimeRecommendationPipeline
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 # -----------------------------------------------------------------------------
 # Configuration & Setup
@@ -156,8 +157,29 @@ st.markdown("""
 # -----------------------------------------------------------------------------
 
 @st.cache_resource
-def init_pipeline():
-    return AnimeRecommendationPipeline()
+def get_embedding_model():
+    """Cache the embedding model separately for faster warm-up."""
+    return HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+
+@st.cache_resource
+def init_pipeline(_embedding_model):
+    """Initialize and cache the pipeline with the provided embedding model."""
+    return AnimeRecommendationPipeline(embedding=_embedding_model)
+
+def bootstrap_ai():
+    """Ensure AI models and vector DB are warmed up with a pretty UI."""
+    if 'pipeline_ready' not in st.session_state:
+        with st.status("🚀 Warming up AI Engine...", expanded=True) as status:
+            st.write("📡 Loading neural embedding model...")
+            emb = get_embedding_model()
+            st.write("📂 Initializing vector search (ChromaDB)...")
+            pipe = init_pipeline(emb)
+            st.session_state.pipeline_ready = True
+            status.update(label="✅ AI Engine Ready!", state="complete", expanded=False)
+        return pipe
+    else:
+        emb = get_embedding_model()
+        return init_pipeline(emb)
 
 def get_ist_time():
     utc_now = datetime.datetime.now(datetime.timezone.utc)
@@ -253,6 +275,12 @@ st.markdown(f"""
     <p style='font-size: 1.1rem; color: #e8e8e8; margin: 0; opacity: 0.9; letter-spacing: 0.5px;'>Semantic Search & Recommendation Engine powered by RAG Architecture</p>
 </div>
 """, unsafe_allow_html=True)
+
+# -----------------------------------------------------------------------------
+# AI Warm-up (Proactive)
+# -----------------------------------------------------------------------------
+# Start warming up the model in the background if it's not ready
+bootstrap_ai()
 
 # -----------------------------------------------------------------------------
 # Tabs
@@ -435,7 +463,7 @@ with tab1:
         # Logic: Run pipeline and update session state
         if search_btn and query:
             st.session_state.last_query_run = query
-            pipeline = init_pipeline()
+            pipeline = bootstrap_ai()
             with st.spinner("🧠 Analyzing semantics & querying vector database..."):
                 try:
                     # Status container for feedback
