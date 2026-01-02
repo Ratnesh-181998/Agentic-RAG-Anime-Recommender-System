@@ -1,6 +1,6 @@
 streamlit
 pandas
-langchain>=0.1.0
+langchain
 langchain-community
 langchain-groq
 langchain-huggingface
@@ -13,4 +13,4 @@ pytz
 requests
 huggingface_hub
 numpy
-torch
+pysqlite3-binary

@@ -1,3 +1,9 @@
+try:
+    __import__('pysqlite3')
+    import sys
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass
 
 import streamlit as st
 import os
@@ -11,7 +17,7 @@ from dotenv import load_dotenv
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from pipeline.pipeline import AnimeRecommendationPipeline
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 # -----------------------------------------------------------------------------
 # Configuration & Setup
