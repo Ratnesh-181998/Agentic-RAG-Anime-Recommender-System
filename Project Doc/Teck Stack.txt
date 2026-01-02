@@ -1,0 +1,177 @@
+Tech stack :
+1.	Groq --> LLM
+2.	HuggingFace --> Embedding Model
+3.	Langchain --> Generative AI Framework to interact with LLM
+4.	GCP VM --> Virtual Machine that can be accessed on cloud. It's a service offered by Google Cloud.
+5.	Minikube --> For making a Kubernetes Cluster where you can deploy your application
+6.	Streamlit --> To make UI or frontend of the app
+7.	Docker --> For containerization of the app during deployment
+8.	Grafana Cloud --> Monitoring your Kubernetes Clusters
+9.	Chroma DB --> Local Vector Store for storing Embeddings
+10.	Kubectl --> Command Line Interface to interact with your Kubernetes
+11.	GitHub --> It will work as a SCM for your project.
+
+
+AI Anime Recommender system.
+________________________________________
+🔧 Tech Stack – Step-by-Step Explanation (End-to-End)
+Think of this project in 5 layers:
+1.	AI / Intelligence
+2.	Data & Retrieval
+3.	Application Layer
+4.	Deployment & Infrastructure
+5.	Monitoring & DevOps
+________________________________________
+🧠 1️⃣ Groq → LLM (Brain of the System)
+Role:
+Groq provides the Large Language Model (LLM) used for:
+•	Understanding user queries
+•	Reasoning over retrieved anime data
+•	Generating human-like recommendations
+Why Groq?
+•	Ultra-low latency inference
+•	Ideal for real-time recommendations
+•	Much faster than traditional GPU inference
+Example:
+User says:
+“Suggest anime like Naruto but darker and mature”
+➡ Groq LLM understands intent, tone, and constraints
+________________________________________
+🧩 2️⃣ Hugging Face → Embedding Model (Semantic Understanding)
+Role:
+Converts text into numerical vectors (embeddings).
+Used for:
+•	Anime synopsis embeddings
+•	Genre & theme embeddings
+•	User preference embeddings
+Why embeddings?
+•	Enables semantic search
+•	Finds meaning, not exact keywords
+Example:
+"Ninja, dark fantasy, action"
+→ [0.023, 0.981, -0.442, ...]
+________________________________________
+🔗 3️⃣ LangChain → Generative AI Framework
+Role:
+LangChain acts as the orchestrator between:
+•	LLM (Groq)
+•	Embeddings (Hugging Face)
+•	Vector DB (Chroma)
+What it does:
+•	Builds chains (prompt → retrieval → reasoning → response)
+•	Handles context injection
+•	Enables RAG (Retrieval Augmented Generation)
+Flow:
+User Query
+ → Embedding
+ → Vector Search
+ → Context Injection
+ → LLM Response
+________________________________________
+🧠 4️⃣ Chroma DB → Vector Store (Memory Layer)
+Role:
+Stores anime embeddings and performs similarity search.
+Why Chroma?
+•	Lightweight
+•	Fast local vector search
+•	Perfect for prototyping & demos
+Stored Data:
+•	Anime title
+•	Synopsis
+•	Genres
+•	Embedding vector
+Query Example:
+Find top-10 anime vectors similar to user preference vector
+________________________________________
+🖥️ 5️⃣ Streamlit → Frontend / UI
+Role:
+Creates the user interface for the recommender.
+What user sees:
+•	Input box (favorite anime / mood)
+•	Recommendation list
+•	Natural language explanation
+Why Streamlit?
+•	Fast to build
+•	Python-native
+•	Ideal for ML/AI demos
+________________________________________
+⚙️ 6️⃣ Docker → Containerization
+Role:
+Packages the entire app into containers.
+Why Docker?
+•	Same environment everywhere
+•	Easy deployment
+•	Required for Kubernetes
+Container Includes:
+•	Streamlit app
+•	LangChain logic
+•	Chroma DB
+•	Model clients
+________________________________________
+☸️ 7️⃣ Minikube → Local Kubernetes Cluster
+Role:
+Runs Kubernetes locally for testing.
+Why Minikube?
+•	Simulates production-grade Kubernetes
+•	Ideal for development & learning
+What runs inside Minikube:
+•	App pods
+•	Service networking
+•	Autoscaling configs
+________________________________________
+☁️ 8️⃣ GCP VM → Cloud Infrastructure
+Role:
+Provides a Virtual Machine on Google Cloud where:
+•	Docker
+•	Minikube / Kubernetes
+•	Application runs
+Why GCP VM?
+•	Cloud accessibility
+•	Scalable
+•	Production-like environment
+________________________________________
+📊 9️⃣ Grafana Cloud → Monitoring
+Role:
+Monitors:
+•	API latency
+•	Pod health
+•	Resource usage
+•	Error rates
+Why Grafana?
+•	Visual dashboards
+•	Production-ready observability
+•	Kubernetes-friendly
+________________________________________
+⌨️ 1️⃣0️⃣ Kubectl → Kubernetes CLI
+Role:
+Command-line tool to manage Kubernetes.
+Used for:
+•	Deploying pods
+•	Checking logs
+•	Scaling services
+Example:
+kubectl get pods
+kubectl logs anime-recommender-pod
+________________________________________
+🌐 1️⃣1️⃣ GitHub → Source Control (SCM)
+Role:
+Manages:
+•	Code versions
+•	Collaboration
+•	CI/CD readiness
+Why GitHub?
+•	Industry standard
+•	Easy integration with DevOps tools
+________________________________________
+🔁 Complete Execution Flow (One View)
+User (Streamlit UI)
+ → LangChain
+   → HuggingFace Embeddings
+     → Chroma DB (Vector Search)
+   → Groq LLM (Reasoning)
+ → Final Recommendation
+ → Monitored by Grafana
+ → Deployed via Docker + Kubernetes (Minikube on GCP VM)
+________________________________________
+✅  One-Line Summary
+“This system uses Groq LLM with LangChain-based RAG architecture, Hugging Face embeddings stored in Chroma DB for semantic anime recommendations, deployed using Docker and Kubernetes on GCP, with real-time monitoring via Grafana Cloud.”

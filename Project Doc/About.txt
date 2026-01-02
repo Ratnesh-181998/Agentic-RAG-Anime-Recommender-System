@@ -1,0 +1,146 @@
+________________________________________
+1️⃣ Problem Statement
+Users struggle to discover anime they’ll actually enjoy due to:
+•	Massive catalogs
+•	Sparse or noisy ratings
+•	Lack of personalized recommendations
+Goal:
+Build an AI-powered anime recommendation system that provides personalized, semantic, and scalable recommendations using embeddings + vector search + LLM reasoning.
+________________________________________
+2️⃣ High-Level Architecture (HLD)
+🔹 Core Idea
+Use content + user preference embeddings stored in a vector database, queried via LangChain, optionally enhanced by LLM reasoning, and deployed in a cloud-native, containerized setup.
+________________________________________
+🔹 HLD Components
+User
+ ↓
+Frontend (UI / Chat / Web App)
+ ↓
+API Gateway
+ ↓
+Recommendation Service
+ ├── User Preference Handler
+ ├── Embedding Generator
+ ├── Vector Search Engine
+ ├── LLM Reasoning Layer
+ ↓
+Response Generator
+________________________________________
+🔹 Technology Mapping (from image)
+Layer	Tech
+UI / Client	Web App / Chat UI
+Backend API	FastAPI
+LLM Orchestration	LangChain
+Embeddings	Hugging Face
+Vector DB	Chroma
+Observability	Grafana
+Containers	Docker
+Orchestration	Kubernetes (Minikube local)
+Cloud	GCP
+________________________________________
+3️⃣ Data Flow (Step-by-Step)
+🟢 Step 1: User Input
+User provides:
+•	Favorite anime
+•	Genres
+•	Mood / themes
+Example:
+“Recommend anime like Death Note with psychological thrillers”
+________________________________________
+🟢 Step 2: Preference Encoding
+•	Input text → Embedding model (Hugging Face)
+•	Converts preferences into a dense vector
+________________________________________
+🟢 Step 3: Vector Search
+•	Query embedding → Chroma Vector DB
+•	Performs semantic similarity search
+•	Retrieves top-K similar anime vectors
+________________________________________
+🟢 Step 4: LLM Reasoning (Optional but Powerful)
+•	LangChain passes:
+o	User intent
+o	Retrieved anime metadata
+•	LLM:
+o	Ranks results
+o	Explains why they match
+o	Filters based on constraints (length, genre, year)
+________________________________________
+🟢 Step 5: Response Generation
+•	Final recommendations returned as:
+o	List
+o	Natural language explanation
+o	Hybrid (list + reasoning)
+________________________________________
+4️⃣ Low-Level Design (LLD)
+🔹 1. Anime Ingestion Pipeline
+Anime Dataset (CSV / API)
+ ↓
+Text Normalization
+ ↓
+Embedding Generation
+ ↓
+Vector Storage (Chroma)
+Fields embedded:
+•	Title
+•	Genre
+•	Synopsis
+•	Themes
+•	Studio
+•	Rating
+________________________________________
+🔹 2. Recommendation Service (FastAPI)
+Endpoints
+POST /recommend
+GET  /health
+Internal Modules
+•	user_input_parser.py
+•	embedding_service.py
+•	vector_search.py
+•	llm_reasoner.py
+•	response_formatter.py
+________________________________________
+🔹 3. Vector Search Logic
+query_embedding = embed(user_input)
+results = chroma.similarity_search(
+    embedding=query_embedding,
+    k=10
+)
+________________________________________
+🔹 4. LangChain Chain
+User Input
+ + Retrieved Anime Context
+ ↓
+Prompt Template
+ ↓
+LLM
+ ↓
+Ranked Recommendations + Explanation
+________________________________________
+🔹 5. Deployment (Docker + Kubernetes)
+Docker
+•	One container per service
+•	Reproducible builds
+Kubernetes
+•	Pod autoscaling
+•	Service discovery
+•	ConfigMaps for models & DB paths
+________________________________________
+5️⃣ Non-Functional Design
+🔐 Security
+•	API rate limiting
+•	Token-based access (optional)
+⚡ Performance
+•	Cached embeddings
+•	Top-K search optimization
+📈 Monitoring
+•	Grafana dashboards:
+o	API latency
+o	Vector query time
+o	Request volume
+♻ Scalability
+•	Stateless API
+•	Horizontally scalable pods
+•	Cloud-ready (GCP)
+________________________________________
+6️⃣ Final Architecture Summary (One-Line)
+A cloud-native, LLM-enhanced anime recommendation system using semantic embeddings, vector search, and agentic reasoning, deployed with Docker + Kubernetes for scalability and observability.
