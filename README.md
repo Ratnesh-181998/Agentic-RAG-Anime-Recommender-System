@@ -80,18 +80,12 @@ graph LR
 ## � Project Structure
 
 ```text
-├── Code/                   # Core Application Source
-│   ├── app/                # Streamlit Dashboard & UI Components
-│   ├── chroma_db/          # Persistent Vector Storage
-│   ├── data/               # Local data processing scripts
-│   ├── pipeline/           # RAG Orchestration & Groq Logic
-│   ├── src/                # Core Utility classes & helper functions
-│   ├── requirements.txt    # Production Dependencies
-│   └── Dockerfile          # Container Configuration
+├── Code/                   # Core Application Source & MLOps Engine
 ├── Dataset Used/           # Raw Metadata Source (CSV)
 ├── Project Doc/            # Technical Specifications & Planning
-├── banner.png              # UI Assets
-└── README.md               # Extensive Project Documentation
+├── README.md               # Unified Project Documentation
+├── LICENSE                 # Project License
+└── requirements.txt        # Production Dependencies
 ```
 
 ---
@@ -119,7 +113,7 @@ Integrated with **GitHub Actions** for automated:
 
 | Provider | Method | Command Snippet |
 | :--- | :--- | :--- |
-| **GCP** | GKE (Kubernetes) | `kubectl apply -f llmops-k8s.yaml` |
+| **GCP** | GKE (Kubernetes) | `kubectl apply -f Code/llmops-k8s.yaml` |
 | **AWS** | EKS (Fargate) | `eksctl create cluster --name anime-rag` |
 | **Cloud** | Streamlit Cloud | Auto-deploy from `main` branch |
 
@@ -140,6 +134,7 @@ For professional infrastructure, we utilize **Google Cloud Platform (GCP)** with
 eval $(minikube docker-env)
 
 # Build & Deploy
+cd Code
 docker build -t llmops-app:latest .
 kubectl apply -f llmops-k8s.yaml
 
@@ -160,7 +155,7 @@ We implement **Full-Stack Observability** using **Grafana Cloud** via Helm chart
    helm repo add grafana https://grafana.github.io/helm-charts
    helm repo update
    helm upgrade --install grafana-k8s-monitoring grafana/k8s-monitoring \
-     --namespace "monitoring" --values values.yaml
+     --namespace "monitoring" --values Code/values.yaml
    ```
 3. **Dashboarding**: Real-time visualization of Pod CPU, Memory spikes, and LLM API latency.
 
@@ -197,7 +192,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # Run Local Server
-streamlit run app/premium_dashboard.py
+streamlit run Code/app/premium_dashboard.py
 ```
 
 ### �️ Environment Variables
