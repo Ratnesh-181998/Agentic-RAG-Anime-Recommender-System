@@ -5,7 +5,7 @@
 [![GitHub Star](https://img.shields.io/github/stars/Ratnesh-181998/Agentic-RAG-Anime-Recommender-System?style=social)](https://github.com/Ratnesh-181998/Agentic-RAG-Anime-Recommender-System)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/ratneshkumar1998/)
 
-![Banner](Code/banner.png)
+![Banner](assets/banner.png)
 
 > **A production-grade, Agentic Retrieval-Augmented Generation (RAG) system for semantic anime discovery. Powered by Groq, LangChain, and ChromaDB.**
 
@@ -17,7 +17,7 @@
 - [🏗️ System Architecture](#️-system-architecture)
 - [� Project Structure](#-project-structure)
 - [�📱 Interactive UI Showcase](#-interactive-ui-showcase)
-- [🚀 MLOps & Deployment Playbook](#-mlops--deployment-playbook)
+- [🚀 LLMOps & Deployment Playbook](#-llmops--deployment-playbook)
 - [� Performance Benchmarks](#-performance-benchmarks)
 - [�🛠️ Developer Setup](#️-developer-setup)
 - [�️ Future Roadmap](#️-future-roadmap)
@@ -45,7 +45,7 @@ The **Agentic RAG Anime Recommender** is an advanced AI platform that implements
 | :--- | :--- |
 | **🤖 AI/ML** | ![LLM](https://img.shields.io/badge/LLM-blue?style=flat-square) ![RAG](https://img.shields.io/badge/RAG-green?style=flat-square) ![Agentic_AI](https://img.shields.io/badge/Agentic_AI-orange?style=flat-square) ![Semantic_Search](https://img.shields.io/badge/Semantic_Search-purple?style=flat-square) ![Vector_DB](https://img.shields.io/badge/Vector_Database-red?style=flat-square) |
 | **🛠️ Tech Stack** | ![Groq](https://img.shields.io/badge/Groq-black?style=flat-square) ![LangChain](https://img.shields.io/badge/LangChain-white?style=flat-square&logo=chainlink) ![ChromaDB](https://img.shields.io/badge/ChromaDB-Teal?style=flat-square) ![HuggingFace](https://img.shields.io/badge/HuggingFace-yellow?style=flat-square) ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white) |
-| **☁️ DevOps/Infra** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&lineColor=white) ![Minikube](https://img.shields.io/badge/Minikube-326CE5?style=flat-square) ![GKE](https://img.shields.io/badge/GKE-4285F4?style=flat-square&logo=google-cloud&logoColor=white) ![CI/CD](https://img.shields.io/badge/CI/CD-8A2BE2?style=flat-square) ![Cloud--Native](https://img.shields.io/badge/Cloud_Native-00A8E1?style=flat-square) |
+| **☁️ LLMOps / AIOps** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&lineColor=white) ![Minikube](https://img.shields.io/badge/Minikube-326CE5?style=flat-square) ![GKE](https://img.shields.io/badge/GKE-4285F4?style=flat-square&logo=google-cloud&logoColor=white) ![CI/CD](https://img.shields.io/badge/CI/CD-8A2BE2?style=flat-square) ![Cloud--Native](https://img.shields.io/badge/Cloud_Native-00A8E1?style=flat-square) |
 | **🎯 Domain** | ![Anime_Recs](https://img.shields.io/badge/Anime_Recommendation-pink?style=flat-square) ![Personalized_Discovery](https://img.shields.io/badge/Personalized_Discovery-blue?style=flat-square) ![Content--Based_Filtering](https://img.shields.io/badge/Content--Based_Filtering-lightgrey?style=flat-square) |
 
 ---
@@ -71,6 +71,20 @@ graph LR
     end
 ```
 
+### 🖼️ Architecture & Workflow Visuals
+
+<details>
+<summary><b>📐 View High-Level & Low-Level Design (HLD/LLD)</b></summary>
+
+![HLD & LLD](assets/hld_lld.png)
+</details>
+
+<details>
+<summary><b>🔄 View Agentic Workflow Detail</b></summary>
+
+![Workflow](assets/workflow.png)
+</details>
+
 ### 🔍 Process Deep Dive
 1.  **Ingestion Phase**: CSV metadata is normalized, tokenized, and transformed into 384-dimensional dense vectors using `all-MiniLM-L6-v2`.
 2.  **Indexing Phase**: **ChromaDB** maintains a persistent HNSW index for sub-10ms nearest neighbor search.
@@ -82,12 +96,17 @@ graph LR
 ## � Project Structure
 
 ```text
-├── Code/                   # Core Application Source & MLOps Engine
+├── Code/                   # Application Pipeline, Logic & UI Components
 ├── Dataset Used/           # Raw Metadata Source (CSV)
-├── Project Doc/            # Technical Specifications & Planning
-├── README.md               # Unified Project Documentation
-├── LICENSE                 # Project License
-└── requirements.txt        # Production Dependencies
+├── Project Doc/            # Detailed Documentation & Checklists
+├── assets/                 # Brand Assets, Architecture Diagrams & UI Screenshots
+├── README.md               # Hero Documentation & Professional Overview
+├── LICENSE                 # MIT Open Source License
+├── requirements.txt        # Python Dependencies
+├── Dockerfile              # Containerization Script
+├── setup.py                # Package Configuration
+├── chroma_db/               # Persistent Vector Database (ChromaDB)
+└── llmops-k8s.yaml         # Kubernetes Orchestration Blueprint
 ```
 
 ---
@@ -99,11 +118,11 @@ graph LR
 - **📖 Project Knowledge Base**: Read deep-dives into the problem/solution framework.
 - **🔧 Tech Analytics**: Monitor system pulse, latency, and hardware acceleration (Groq).
 - **🏗️ Architecture Blueprints**: View HLD, LLD, and Phase-wise maps.
-- **📋 MLOps Operations Monitor**: Filter and search live system logs for full transparency.
+- **📋 LLMOps Operations Monitor**: Filter and search live system logs for full transparency.
 
 ---
 
-## 🚀 MLOps & Deployment Playbook
+## 🚀 LLMOps & Deployment Playbook
 
 ### 🏗️ CI/CD Pipeline
 Integrated with **GitHub Actions** for automated:
@@ -115,7 +134,7 @@ Integrated with **GitHub Actions** for automated:
 
 | Provider | Method | Command Snippet |
 | :--- | :--- | :--- |
-| **GCP** | GKE (Kubernetes) | `kubectl apply -f Code/llmops-k8s.yaml` |
+| **GCP** | GKE (Kubernetes) | `kubectl apply -f llmops-k8s.yaml` |
 | **AWS** | EKS (Fargate) | `eksctl create cluster --name anime-rag` |
 | **Cloud** | Streamlit Cloud | Auto-deploy from `main` branch |
 
@@ -136,7 +155,6 @@ For professional infrastructure, we utilize **Google Cloud Platform (GCP)** with
 eval $(minikube docker-env)
 
 # Build & Deploy
-cd Code
 docker build -t llmops-app:latest .
 kubectl apply -f llmops-k8s.yaml
 
@@ -157,7 +175,7 @@ We implement **Full-Stack Observability** using **Grafana Cloud** via Helm chart
    helm repo add grafana https://grafana.github.io/helm-charts
    helm repo update
    helm upgrade --install grafana-k8s-monitoring grafana/k8s-monitoring \
-     --namespace "monitoring" --values Code/values.yaml
+     --namespace "monitoring" --values my-grafana-values.yaml
    ```
 3. **Dashboarding**: Real-time visualization of Pod CPU, Memory spikes, and LLM API latency.
 

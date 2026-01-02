@@ -331,11 +331,12 @@ with tab1:
         """)
     
     st.markdown("---")
-    st.subheader("🎯 Find Your Next Obsession")
+    st.markdown("<h2 style='color: #2ecc71;'>🎯 Find Your Next Obsession</h2>", unsafe_allow_html=True)
 
-    # Banner (if exists)
-    if os.path.exists("banner.png"):
-        st.image("banner.png", use_container_width=True)
+    # Banner (Corrected path for new folder structure)
+    banner_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'assets', 'banner.png')
+    if os.path.exists(banner_path):
+        st.image(banner_path, use_container_width=True)
 
     # Callback to handle prompt selection (defined early for use later)
     def set_prompt(text):
@@ -1146,8 +1147,8 @@ with tab4:
     st.markdown("---")
     st.markdown("### 🖼️ Detailed System Blueprints")
     
-    img_path1 = os.path.join(os.path.dirname(__file__), '..', 'HLD&LLD.png')
-    img_path2 = os.path.join(os.path.dirname(__file__), '..', 'AI+Anime+Recommender+Workflow.png')
+    img_path1 = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'assets', 'hld_lld.png')
+    img_path2 = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'assets', 'workflow.png')
     
     if os.path.exists(img_path1):
         st.image(img_path1, caption="High Level & Low Level Design", use_container_width=True)
@@ -1359,7 +1360,7 @@ with tab5:
     """, unsafe_allow_html=True)
 
     # Log Logic (Optimized)
-    logs_dir = os.path.join(os.path.dirname(__file__), '..', 'logs')
+    logs_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'logs')
     log_data = []
     
     # Read the latest log file for the stats
