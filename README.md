@@ -11,7 +11,7 @@
 
 ---
 
-## 📍 Table of Contents
+## 📍 Contents
 - [🌟 Overview & Core Mission](#-overview--core-mission)
 - [🏷️ Tech Stack & Keywords](#️-tech-stack--keywords)
 - [🏗️ System Architecture](#️-system-architecture)
@@ -34,6 +34,13 @@ In a world with thousands of anime titles, generic category-based recommendation
 The **Agentic RAG Anime Recommender** is an advanced AI platform that implements **Semantic Search** and **Personalized Discovery** using a **Content-Based Filtering** approach enhanced by Large Language Models (**LLMs**). It understands the "vibe" of a query and provides a reasoning layer that explains the logic behind every suggestion.
 
 > **Pro Tip**: Use queries like *"Find me an anime that feels like a lonely evening in a cyberpunk city"* to see the power of semantic retrieval.
+
+---
+
+## 🌐🎬 Live Demo
+🚀 **Try it now:**
+- **Streamlit Profile** - https://share.streamlit.io/user/ratnesh-181998
+- **Project Demo** - https://agentic-rag-anime-recommender-system-dhsvh7zgrejeed2ghprr3d.streamlit.app/
 
 ---
 
@@ -267,7 +274,7 @@ streamlit run Code/app/premium_dashboard.py
 
 - 💼 **LinkedIn**: [Connect with me](https://www.linkedin.com/in/ratneshkumar1998/)
 - 🐙 **GitHub**: [Review my Repos](https://github.com/Ratnesh-181998)
-- 🌐 **Live Project**: [Explore the App](https://appudtzei3tyyttd6xjhwur.streamlit.app/)
+- 🌐 **Live Project**: [Explore the App](https://agentic-rag-anime-recommender-system-dhsvh7zgrejeed2ghprr3d.streamlit.app/)
 
 ---
 
