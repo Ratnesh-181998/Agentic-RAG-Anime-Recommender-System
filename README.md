@@ -327,3 +327,12 @@ Licensed under the **MIT License**. Feel free to fork and build upon this innova
 
 ---
 *Built with passion for the AI Community. 🚀*
+
+</div>
+
+---
+
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%">
+  
+</div>
