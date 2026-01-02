@@ -7,8 +7,21 @@ import pytz
 import base64
 from dotenv import load_dotenv
 
-# Add the parent directory to sys.path to ensure we can import pipeline
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+# -----------------------------------------------------------------------------
+# Path Setup for Streamlit Cloud
+# -----------------------------------------------------------------------------
+# Get the absolute path of the current file's directory (Code/app)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Get the parent directory (Code)
+code_dir = os.path.dirname(current_dir)
+# Get the project root directory
+root_dir = os.path.dirname(code_dir)
+
+# Add to sys.path to ensure modules in Code/ are discoverable
+if code_dir not in sys.path:
+    sys.path.insert(0, code_dir)
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
 
 from pipeline.pipeline import AnimeRecommendationPipeline
 from langchain_community.embeddings import HuggingFaceEmbeddings

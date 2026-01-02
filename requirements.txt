@@ -9,6 +9,5 @@ python-dotenv
 pytz
 requests
 huggingface_hub
-# Optional for performance but good for cloud
 numpy
-torch --index-url https://download.pytorch.org/whl/cpu
+torch
